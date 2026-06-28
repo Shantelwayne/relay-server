@@ -366,3 +366,168 @@ body {
   .topbar { padding:0 1rem; }
   .device-tag { display:none; }
 }
+
+/* ───────────────────────────────────────────
+   EXTRA ICON BG COLOURS
+─────────────────────────────────────────── */
+.bg-accent { background: rgba(0,229,255,.13);  }
+.bg-teal   { background: rgba(0,200,180,.13);  }
+
+/* ───────────────────────────────────────────
+   BOOT SCREEN
+─────────────────────────────────────────── */
+.boot-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(0,229,255,.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(124,77,255,.06) 0%, transparent 60%),
+    var(--bg);
+}
+
+.boot-logo {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  user-select: none;
+}
+.boot-logo-icon {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 0 24px rgba(0,229,255,.25);
+}
+.boot-logo-text {
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+  color: var(--text);
+}
+.boot-logo-text span { color: var(--accent); }
+
+/* Boot card */
+.boot-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.boot-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.boot-badge {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.boot-timer {
+  font-size: .78rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Terminal log */
+.boot-log {
+  background: #08090e;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  min-height: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: .82rem;
+}
+.boot-log::-webkit-scrollbar { width: 4px; }
+.boot-log::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.boot-line {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  animation: fadeIn .3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.boot-line.ok     { color: var(--green); }
+.boot-line.info   { color: var(--muted); }
+.boot-line.active { color: var(--accent); }
+
+.bl-icon {
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+  font-size: .8rem;
+}
+.bl-msg { line-height: 1.4; }
+
+/* Cursor blink */
+.cursor {
+  display: inline-block;
+  animation: blink .8s step-end infinite;
+  color: var(--accent);
+  margin-left: 1px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* Boot spinner (tiny inline) */
+.boot-spinner {
+  display: inline-block;
+  width: 12px; height: 12px;
+  border: 1.5px solid rgba(0,229,255,.25);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin .6s linear infinite;
+  vertical-align: middle;
+}
+
+/* Boot progress */
+.boot-progress-wrap { display: flex; flex-direction: column; gap: .45rem; }
+.boot-progress-track {
+  height: 5px;
+  background: var(--panel);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.boot-progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: width .6s ease;
+  box-shadow: 0 0 8px rgba(0,229,255,.4);
+}
+.boot-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.boot-note {
+  font-size: .74rem;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: .04em;
+}
