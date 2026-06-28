@@ -7,16 +7,16 @@ function LogIcon({ type, done }) {
   if (!done) return <div className="spinner" />
   if (type === 'success') return <span>✅</span>
   if (type === 'error')   return <span>🔴</span>
-  return <span>ℹ️</span>
+  return <span style={{ fontSize: '.85rem' }}>ℹ️</span>
 }
 
 export default function ActivityModal({ featureKey, onClose }) {
   const seq = SEQUENCES[featureKey]
-  const [logs, setLogs]   = useState([])
-  const [prog, setProg]   = useState(0)
+  const [logs,  setLogs]  = useState([])
+  const [prog,  setProg]  = useState(0)
   const [fatal, setFatal] = useState(false)
-  const [done, setDone]   = useState(false)
-  const logRef            = useRef(null)
+  const [done,  setDone]  = useState(false)
+  const logRef = useRef(null)
 
   useEffect(() => {
     let cancelled = false
@@ -30,7 +30,7 @@ export default function ActivityModal({ featureKey, onClose }) {
         if (cancelled) return
         setLogs(prev => prev.map(l => l.id === i ? { ...l, done: true } : l))
         if (step.fatal) { setFatal(true); setDone(true); return }
-        await delay(280)
+        await delay(260)
       }
       if (!cancelled) setDone(true)
     }
@@ -50,19 +50,20 @@ export default function ActivityModal({ featureKey, onClose }) {
       onClick={e => { if (done && e.target === e.currentTarget) onClose() }}
     >
       <div className="modal">
+
         {/* Header */}
         <div className="modal-header">
-          <span className="m-icon">{seq.icon}</span>
+          <div className="mh-icon">{seq.icon}</div>
           <div>
-            <h3>{seq.title}</h3>
-            <div className="m-sub">{seq.desc}</div>
+            <div className="mh-title">{seq.title}</div>
+            <div className="mh-sub">{seq.desc}</div>
           </div>
         </div>
 
-        {/* Progress */}
+        {/* Progress bar */}
         <div className="progress-wrap">
           <div className="progress-label">
-            <span>{fatal ? 'Failed' : done ? 'Complete' : 'Working…'}</span>
+            <span>{fatal ? 'Connection failed' : done ? 'Complete' : 'Working…'}</span>
             <span>{prog}%</span>
           </div>
           <div className="progress-track">
@@ -73,14 +74,14 @@ export default function ActivityModal({ featureKey, onClose }) {
           </div>
         </div>
 
-        {/* Log */}
+        {/* Activity log */}
         <div className="activity-log" ref={logRef}>
           {logs.map(l => (
             <div key={l.id} className={`log-entry ${l.type}`}>
               <div className="log-icon">
                 <LogIcon type={l.type} done={l.done} />
               </div>
-              <div className="log-text">
+              <div>
                 <div className="lt-msg">{l.msg}</div>
                 <div className="lt-time">{now()}</div>
               </div>
@@ -88,7 +89,7 @@ export default function ActivityModal({ featureKey, onClose }) {
           ))}
         </div>
 
-        {/* Error banner */}
+        {/* Fatal error banner */}
         {fatal && (
           <div className="error-banner">
             <span className="eb-icon">🚫</span>
@@ -104,10 +105,11 @@ export default function ActivityModal({ featureKey, onClose }) {
 
         {/* Footer */}
         <div className="modal-footer">
-          <button className="btn-sm ghost" onClick={onClose} disabled={!done}>
-            {done ? (fatal ? '← Back to Dashboard' : 'Close') : 'Please wait…'}
+          <button className="btn ghost" onClick={onClose} disabled={!done}>
+            {done ? (fatal ? '← Back to Panel' : 'Close') : 'Please wait…'}
           </button>
         </div>
+
       </div>
     </div>
   )
