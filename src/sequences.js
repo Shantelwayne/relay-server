@@ -1,6 +1,6 @@
 const FATAL = {
   type: 'error',
-  msg: 'Relay server failed to connect. Make sure you are using a Neural Network server for HTTP access.',
+  msg: 'Relay server failed to connect. Please connect to an HTTPS-only relay server and try again.',
   prog: 100,
   dur: 0,
   fatal: true,

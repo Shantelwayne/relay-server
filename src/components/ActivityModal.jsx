@@ -96,8 +96,8 @@ export default function ActivityModal({ featureKey, onClose }) {
             <div>
               <div className="eb-title">Relay Server Connection Failed</div>
               <div className="eb-msg">
-                The relay server failed to connect. Make sure you are using a{' '}
-                <strong>Neural Network server</strong> for HTTP access and try again.
+                The relay server failed to connect. Please connect to an{' '}
+                <strong>HTTPS-only relay server</strong> and try again.
               </div>
             </div>
           </div>
